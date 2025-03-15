@@ -29,8 +29,8 @@ st.sidebar.title("💡 Need Inspiration?")
 st.sidebar.write("Try these research queries:")
 
 sample_prompts = [
-    "Find recent lastest research papers on artificial intelligence.",
-    "Summarize the latest advancements in quantum computing.",
+    "Give research papers related to emotion recognition using deep learning.",
+    "Find latest research papers on artificial intelligence.",
     "How is deep learning used in medical imaging?",
     "Generate an APA citation for 'Transformer Models in NLP' by J. Doe, 2022.",
     "What are the ethical concerns in AI research?",
@@ -64,6 +64,25 @@ for message in st.session_state.messages:
     with st.chat_message(role):
         st.markdown(message["content"], unsafe_allow_html=True)
 
+# ✅ Function to format AI response for better readability
+def format_response(response):
+    """Enhances response readability by adding markdown formatting."""
+    formatted_response = ""
+
+    # Detect structured responses (e.g., lists, citations)
+    if "\n" in response:
+        lines = response.split("\n")
+        for line in lines:
+            if line.strip():
+                if ":" in line:  # Key-Value format (e.g., "Title: Deep Learning")
+                    formatted_response += f"**{line.split(':')[0].strip()}**: {line.split(':')[1].strip()}  \n"
+                else:
+                    formatted_response += f"- {line.strip()}  \n"
+    else:
+        formatted_response = response  # Keep simple text as-is
+
+    return formatted_response
+
 # 🔍 Processing AI Response
 if user_input:
     # Add user message to chat history
@@ -82,7 +101,7 @@ if user_input:
         loop = asyncio.new_event_loop()
         asyncio.set_event_loop(loop)
         response = loop.run_until_complete(process_research_request(user_input))
-        
+
         # 🎬 Stream response word by word
         response_text = ""
         for word in response.split():
@@ -90,8 +109,15 @@ if user_input:
             status.markdown(f"🤖 **Research Buddy:** {response_text}", unsafe_allow_html=True)
             time.sleep(0.05)
 
+        # Format the final response
+        formatted_response = format_response(response)
+
     # Add AI assistant's response to chat history
-    st.session_state.messages.append({"role": "assistant", "content": f"🤖 **Research Buddy:** {response}"})
+    st.session_state.messages.append({"role": "assistant", "content": f"🤖 **Research Buddy:**  \n{formatted_response}"})
+    
+    # Display formatted response
+    with st.chat_message("assistant"):
+        st.markdown(f"🤖 **Research Buddy:**  \n{formatted_response}", unsafe_allow_html=True)
 
 # 📖 User Guide Section
 st.sidebar.markdown("## 📖 How to Use")
