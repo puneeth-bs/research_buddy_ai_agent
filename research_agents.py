@@ -4,6 +4,9 @@ from openai import OpenAI
 from agents import Agent, Runner
 from dotenv import load_dotenv
 
+import agentops
+agentops.init("57a140be-a0be-45cf-b9d1-ba3fadbbfc79")
+
 # Load API key from .env file
 load_dotenv()
 openai_api_key = os.getenv("OPENAI_API_KEY")
