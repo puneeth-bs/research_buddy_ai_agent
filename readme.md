@@ -46,5 +46,8 @@ pip install -r requirements.txt
 
 export OPENAI_API_KEY="your-api-key-here"
 
+export AGENTOPS_API_KEY="your-api-key-here"
+
+
 streamlit run app.py
 
