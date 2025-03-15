@@ -13,6 +13,16 @@ You said:
 
 ---
 
+## 🖼️ UI Preview & AgentOps Dashboard
+
+| Chatbot UI | AgentOps Dashboard |
+|------------|-------------------|
+| ![Chatbot UI](images/image_2.png) | ![AgentOps Dashboard](images/image_3.jpeg) |
+
+
+
+
+
 ## 📂 Project Structure
     .
     ├── app.py                                # main file to run the project
@@ -27,8 +37,8 @@ You said:
 ## 🔧 Installation & Setup
 
 ### **Run the following commands**
-bash
-git clone https://github.com/puneeth-bs/research_buddy_ai_agent
+```bash
+git clone https://github.com/puneeth-bs/research_buddy_ai_agent.git
 
 python -m venv .venv
 source .venv/bin/activate  # On Windows: .venv\Scripts\activate
@@ -39,12 +49,3 @@ export OPENAI_API_KEY="your-api-key-here"
 
 streamlit run app.py
 
-
-
-
-
-## 🖼️ UI Preview
-![Chatbot UI](images/image_1.png)
-
-## 🖼️ AgentOps Dashboard
-![AgentOps Dashboard](images/agentops_dashbaord.jpeg)
