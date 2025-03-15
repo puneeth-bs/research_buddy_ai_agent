@@ -1,5 +1,4 @@
 
-You said:
 # 📚 Research Buddy AI Agent 🤖
 
 **Research Buddy AI Agent** is an intelligent research assistant that helps users search for research papers, summarize academic content, generate citations, and answer research-related questions. Built using **Streamlit** for the frontend and **OpenAI Agents** for AI-driven research.
